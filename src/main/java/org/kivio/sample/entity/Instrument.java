@@ -19,7 +19,7 @@ import java.io.Serializable;
 })
 public class Instrument {
     @EmbeddedId
-    private String isin;
+    private InstrumentId instrumentId;
     private String name;
 
     public Instrument() {
@@ -27,7 +27,7 @@ public class Instrument {
     }
 
     public Instrument(String isin, String name) {
-        this.isin = isin;
+        this.instrumentId = new InstrumentId(isin);
         this.name = name;
     }
 }

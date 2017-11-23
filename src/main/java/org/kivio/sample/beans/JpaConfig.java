@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.meecrowave.jpa.api.PersistenceUnitInfoBuilder;
 import org.kivio.sample.entity.Instrument;
+import org.kivio.sample.entity.InstrumentId;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
@@ -21,7 +22,8 @@ public class JpaConfig {
                 .setDataSource(ds)
                 .setExcludeUnlistedClasses(true)
                 .addManagedClazz(Instrument.class)
-                .addProperty("openjpa.RuntimeUnenhancedClasses", "supported")
+                .addManagedClazz(InstrumentId.class)
+                .addProperty("openjpa.RuntimeUnenhancedClasses", "unsupported")
                 .addProperty("openjpa.jdbc.SynchronizeMappings", "buildSchema")
                 .addProperty("openjpa.Log", "DefaultLevel=INFO, Runtime=TRACE, Tool=TRACE, SQL=TRACE");
     }

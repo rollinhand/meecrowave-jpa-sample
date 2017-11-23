@@ -14,6 +14,7 @@
         <commons.csv.version>1.5</commons.csv.version>
         <h2.version>1.4.196</h2.version>
         <liquibase.version>3.5.3</liquibase.version>
+        <openjpa.version>2.4.2</openjpa.version>
     </properties>
 
     <dependencies>
@@ -93,6 +94,32 @@
                 <groupId>org.apache.meecrowave</groupId>
                 <artifactId>meecrowave-maven-plugin</artifactId>
                 <version>${meecrowave.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.openjpa</groupId>
+                <artifactId>openjpa-maven-plugin</artifactId>
+                <version>${openjpa.version}</version>
+                <configuration>
+                    <includes>entity/*.class</includes>
+                    <addDefaultConstructor>true</addDefaultConstructor>
+                    <enforcePropertyRestrictions>true</enforcePropertyRestrictions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>JPA Enhance</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>enhance</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.openjpa</groupId>
+                        <artifactId>openjpa</artifactId>
+                        <version>${openjpa.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
