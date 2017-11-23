@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    
+    <changeSet id="create table instruments" author="rollinhand">
+        <createTable tableName="INSTRUMENT">
+            <column name="ISIN" type="VARCHAR(12)" remarks="ISIN" />
+            <column name="NAME" type="VARCHAR(255)" remarks="Wertpapiername" />
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create pk on instruments" author="rollinhand">
+        <addNotNullConstraint tableName="INSTRUMENT" columnName="ISIN" columnDataType="VARCHAR(12)"/>
+        <addPrimaryKey tableName="INSTRUMENT" columnNames="ISIN" constraintName="INSTRUMENT_PK" />
+    </changeSet>
+</databaseChangeLog>
